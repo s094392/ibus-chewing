@@ -541,6 +541,8 @@ EventResponse self_handle_left(IBusChewingPreEdit* self, KSym kSym,
 EventResponse self_handle_up(IBusChewingPreEdit* self, KSym kSym,
     KeyModifiers unmaskedMod)
 {
+    filter_modifiers(0);
+    ignore_when_buffer_is_empty_and_table_not_showing;
     absorb_when_release;
     if (table_is_showing) {
         int current_choice = 1 + chewing_cand_CurrentPage(self->context) * chewing_cand_ChoicePerPage(self->context) + ibus_lookup_table_get_cursor_pos(self->iTable);
@@ -560,8 +562,6 @@ EventResponse self_handle_up(IBusChewingPreEdit* self, KSym kSym,
         }
     }
 
-    filter_modifiers(0);
-    ignore_when_buffer_is_empty_and_table_not_showing;
     handle_log("up");
 
     return event_process_or_ignore(!chewing_handle_Up(self->context));
@@ -585,8 +585,11 @@ EventResponse self_handle_right(IBusChewingPreEdit* self, KSym kSym,
 EventResponse self_handle_down(IBusChewingPreEdit* self, KSym kSym,
     KeyModifiers unmaskedMod)
 {
+    filter_modifiers(0);
+    ignore_when_buffer_is_empty_and_table_not_showing;
     absorb_when_release;
     if (table_is_showing) {
+        ignore_when_buffer_is_empty;
         int total_page = chewing_cand_TotalChoice(self->context) / chewing_cand_ChoicePerPage(self->context);
         int current_choice = 1 + chewing_cand_CurrentPage(self->context) * chewing_cand_ChoicePerPage(self->context) + ibus_lookup_table_get_cursor_pos(self->iTable);
         if (current_choice != chewing_cand_TotalChoice(self->context)) {
@@ -598,8 +601,6 @@ EventResponse self_handle_down(IBusChewingPreEdit* self, KSym kSym,
             }
         }
     }
-    filter_modifiers(0);
-    ignore_when_buffer_is_empty_and_table_not_showing;
     handle_log("down");
 
     return event_process_or_ignore(!chewing_handle_Down(self->context));
