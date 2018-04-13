@@ -21,6 +21,24 @@ We use **[K&R](https://en.wikipedia.org/wiki/Indent_style#K.26R_style), 4 spaces
 ln -s ../../pre-commit .git/hooks/pre-commit
 ```
 
+## Instalation guide
+1. Clone this repository
+```sh
+git clone --recursive https://github.com/s094392/ibus-chewing.git
+```
+
+2. Make & install
+```sh
+cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DLIBEXEC_DIR='/usr/libexec'
+make
+sudo make install
+```
+
+3. Restart ibus
+```sh
+ibus exit
+```
+
 ## For debugging ibus-chewing
 
 1. Quit existing ibus-daemon
