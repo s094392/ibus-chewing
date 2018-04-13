@@ -46,7 +46,7 @@ sudo make install
 
 3. Restart ibus
 ```sh
-ibus exit
+ibus restart
 ```
 
 ## For debugging ibus-chewing
