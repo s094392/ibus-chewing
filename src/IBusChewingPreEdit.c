@@ -589,10 +589,9 @@ EventResponse self_handle_down(IBusChewingPreEdit* self, KSym kSym,
     ignore_when_buffer_is_empty_and_table_not_showing;
     absorb_when_release;
     if (table_is_showing) {
-        ignore_when_buffer_is_empty;
         int total_page = chewing_cand_TotalChoice(self->context) / chewing_cand_ChoicePerPage(self->context);
         int current_choice = 1 + chewing_cand_CurrentPage(self->context) * chewing_cand_ChoicePerPage(self->context) + ibus_lookup_table_get_cursor_pos(self->iTable);
-        if (current_choice != chewing_cand_TotalChoice(self->context)) {
+        if (current_choice != chewing_cand_TotalChoice(self->context) || ibus_chewing_pre_edit_is_empty(self)) {
             if (ibus_lookup_table_get_cursor_pos(self->iTable) != chewing_cand_ChoicePerPage(self->context) - 1) {
                 gboolean tmp = ibus_lookup_table_cursor_down(self->iTable);
                 return EVENT_RESPONSE_ABSORB;
