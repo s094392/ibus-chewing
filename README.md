@@ -23,13 +23,15 @@ ln -s ../../pre-commit .git/hooks/pre-commit
 
 ## Instalation guide
 0. Required: 
-    cmake      >= 2.6.2
-    ibus       >= 1.3
-    glib       >= 2
-    gob        >= 2.0.16
-    gtk        >= 2
-    libchewing >= 0.3.3
-    libX11
+```
+cmake      >= 2.6.2 
+ibus       >= 1.3 
+glib       >= 2 
+gob        >= 2.0.16 
+gtk        >= 2 
+libchewing >= 0.3.3 
+libX11
+```
 
 1. Clone this repository
 ```sh
